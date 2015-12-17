@@ -7,6 +7,9 @@ public class CheckedWord {
     Long id;
     String essentialWord;
     String dictionaryWord;
+    Integer firstSymbolIndex;
+    Integer wrongSymbolIndex;
+    Integer lineNumer;
 
     public Long getId() {
         return id;
@@ -30,5 +33,29 @@ public class CheckedWord {
 
     public void setDictionaryWord(String dictionaryWord) {
         this.dictionaryWord = dictionaryWord;
+    }
+
+    public Integer getFirstSymbolIndex() {
+        return firstSymbolIndex;
+    }
+
+    public void setFirstSymbolIndex(Integer firstSymbolIndex) {
+        this.firstSymbolIndex = firstSymbolIndex;
+    }
+
+    public Integer getWrongSymbolIndex() {
+        return wrongSymbolIndex;
+    }
+
+    public void setWrongSymbolIndex(Integer wrongSymbolIndex) {
+        this.wrongSymbolIndex = wrongSymbolIndex;
+    }
+
+    public Integer getLineNumer() {
+        return lineNumer;
+    }
+
+    public void setLineNumer(Integer lineNumer) {
+        this.lineNumer = lineNumer;
     }
 }

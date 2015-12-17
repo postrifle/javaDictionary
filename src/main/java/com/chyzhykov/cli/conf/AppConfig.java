@@ -1,4 +1,4 @@
-package com.chyzhykov.cli;
+package com.chyzhykov.cli.conf;
 
 
 import org.springframework.context.annotation.Bean;
@@ -20,7 +20,7 @@ public class AppConfig {
         dataSource.setDriverClassName("org.postgresql.Driver");
         dataSource.setUrl("jdbc:postgresql://localhost:5432/mydb1");
         dataSource.setUsername("postgres");
-        dataSource.setPassword("admin");
+        dataSource.setPassword("password");
         return dataSource;
     }
 

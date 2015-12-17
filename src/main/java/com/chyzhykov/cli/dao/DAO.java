@@ -8,6 +8,4 @@ import com.chyzhykov.cli.model.Word;
 public interface DAO {
     Long insert(Object entity);
     void delete(Long id);
-
-
 }
