@@ -11,23 +11,24 @@ import org.springframework.stereotype.Repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Created by AChizhikov on 12/7/2015.
  */
 
 @Repository
-public class SpellCheckDao implements DAO {
+public class SpellCheckDao extends AbstractDAO<CheckedWord> {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    public Long insert(final Object entity) {
+    public Long insert(final CheckedWord checkedWord) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(new PreparedStatementCreator() {
             public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
                 PreparedStatement ps = connection.prepareStatement("insert into spellcheck (essentialword, dictionaryword) values (?, ?)", new String[]{"id"});
-                ps.setString(1, ((CheckedWord)entity).getEssentialWord());
-                ps.setString(2, ((CheckedWord)entity).getDictionaryWord());
+                ps.setString(1, ((CheckedWord) checkedWord).getEssentialWord());
+                ps.setString(2, ((CheckedWord) checkedWord).getDictionaryWord());
                 return ps;
             }
         }, keyHolder);
@@ -35,7 +36,8 @@ public class SpellCheckDao implements DAO {
         return keyHolder.getKey().longValue();
     }
 
-    public void delete(Long id) {
-        jdbcTemplate.update("delete from spellcheck where id = ?", id);
+    @Override
+    public List getAll() {
+        return null;
     }
 }

@@ -23,7 +23,8 @@ public class SpellCheckService {
     JdbcDictionaryDao jdbcDictionaryDao;
 
     public void addCheckedWordsToBD(List<CheckedWord> checkedWords) {
-        for (CheckedWord checkedWord : grammarCheck(checkedWords)) {
+        List<Word> dictionaryWords = jdbcDictionaryDao.getAll();
+        for (CheckedWord checkedWord : grammarCheck(checkedWords, dictionaryWords)) {
             spellCheckDao.insert(checkedWord);
         }
     }
@@ -39,8 +40,8 @@ public class SpellCheckService {
         return checkedWords;
     }
 
-    private List<CheckedWord> grammarCheck(List<CheckedWord> checkedWords) {
-        List<Word> dictionaryWords = jdbcDictionaryDao.getAll();
+    private List<CheckedWord> grammarCheck(List<CheckedWord> checkedWords, List<Word> dictionaryWords) {
+
         for (CheckedWord checkedWord : checkedWords) {
             int closestDistance = checkedWord.getEssentialWord().length();
             String closestWord = null;
